@@ -32,8 +32,8 @@ def test_footer_text(browser):
 def test_elements_page_text(browser):
     component = Component(browser)
     browser.get("https://demoqa.com/")
-    elements_button = browser.find_element(By.LINK_TEXT, "Elements")  # Найти кнопку по её тексту
-    elements_button.click()  # Нажатие кнопки
+    elements_button = browser.find_element(By.LINK_TEXT, "Elements")  
+    elements_button.click()  
     center_text = component.get_text(".main-header")
     expected_text = "Please select an item from left to start practice."
     assert center_text.strip() == expected_text, f"Ожидалось '{expected_text}', получено '{center_text}'"
