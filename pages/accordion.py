@@ -11,14 +11,9 @@ class Accordion(BaseClass):
         self.driver = driver
 
     def open_page(self):
-        """Открывает главную страницу"""
-        self.driver.get("https://demoqa.com/accordian")
+         self.driver.get("https://demoqa.com/accordian")
         
     def is_element_visible(self, locator):
-        """
-        Возвращает True, если элемент виден, иначе False
-        :param locator: CSS селектор элемента
-        """
         try:
             element = self.driver.find_element(By.CSS_SELECTOR, locator)
             return element.is_displayed()
@@ -26,9 +21,5 @@ class Accordion(BaseClass):
             return False
 
     def click_on_section_heading(self, heading_id):
-        """
-        Кликает на указанный заголовок секции
-        :param heading_id: ID заголовка секции
-        """
         section_heading = self.driver.find_element(By.ID, heading_id)
         section_heading.click()
