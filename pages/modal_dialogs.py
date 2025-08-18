@@ -13,3 +13,21 @@ from selenium.webdriver.common.by import By
 
        def count_buttons(self):
            return len(self.find_elements(*self.MODAL_BUTTONS))
+
+
+HOME_ICON = (By.XPATH, "//img[@alt='ToolsQA']")  
+
+   def click_home_icon(self):
+       self.click_element(*self.HOME_ICON)
+
+   def refresh_page(self):
+       self.driver.refresh()
+
+   def navigate_back(self):
+       self.driver.back()
+
+   def navigate_forward(self):
+       self.driver.forward()
+
+   def set_window_size(self, width, height):
+       self.driver.set_window_size(width, height)
