@@ -13,7 +13,6 @@ def browser():
     driver.quit()
 
 
-
 def test_visible_accordion(browser):
     page = Accordion(browser)
     page.open_page()
