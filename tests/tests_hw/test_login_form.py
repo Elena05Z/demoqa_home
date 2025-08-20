@@ -14,6 +14,6 @@ def browser():
 def test_select_state_and_city(browser):
     browser.get("https://demoqa.com/automation-practice-form")
     state_dropdown = Select(browser.find_element(By.ID, "state"))
-    state_dropdown.select_by_visible_text("California")  
+    state_dropdown.select_by_visible_text("NCR")  
     city_dropdown = Select(browser.find_element(By.ID, "city"))
-    city_dropdown.select_by_visible_text("San Francisco") 
+    city_dropdown.select_by_visible_text("Delhi") 
