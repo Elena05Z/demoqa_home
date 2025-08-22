@@ -2,32 +2,29 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class WebTablePage:
+class WebTablesPage:
     def __init__(self, driver):
         self.driver = driver
         self.url = "https://demoqa.com/webtables"
-        self.header_css_selector = ".rt-thead.-header .rt-tr-group th"
+        self.table_headers_selector = ".rt-th.rt-resizable-header"
 
     
     def open(self):
         self.driver.get(self.url)
 
     
-    def get_headers(self):
-        return self.driver.find_elements(By.CSS_SELECTOR, self.header_css_selector)
+    def get_column_headers(self):
+        return self.driver.find_elements(By.CSS_SELECTOR, self.table_headers_selector)
 
     
-    def click_on_header(self, header):
-        header.click()
+    def sort_by_header(self, column_header):
+        column_header.click()
 
     
-    def get_sort_order_class(self, header):
-        classes = header.get_attribute("class").split()
-        return next((cls for cls in classes if cls.startswith("rt-sortable-header--")), None)
+    def get_sorted_class_for_header(self, column_header):
+        return column_header.get_attribute("class").split()[-1]
 
     
-    def wait_until_sorted(self, header):
-        old_class = self.get_sort_order_class(header)
-        WebDriverWait(self.driver, timeout=5).until(
-            lambda drv: self.get_sort_order_class(header) != old_class,
-            message="Смена класса сортировки не произошла"
+    def check_sorting_state(self, column_header):
+        sorted_class = self.get_sorted_class_for_header(column_header)
+        return "sort-desc" in sorted_class or "sort-asc" in sorted_class
